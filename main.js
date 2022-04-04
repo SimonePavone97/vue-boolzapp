@@ -7,7 +7,7 @@ var app = new Vue({
         },
         contacts: [{
                 name: 'Michele',
-                avatar: '_1',
+                avatar: 'avatar_1',
                 visible: true,
                 messages: [{
                         date: '10/01/2020 15:30:55',
@@ -28,7 +28,7 @@ var app = new Vue({
             },
             {
                 name: 'Fabio',
-                avatar: '_2',
+                avatar: 'avatar_2',
                 visible: true,
                 messages: [{
                         date: '20/03/2020 16:30:00',
@@ -49,7 +49,7 @@ var app = new Vue({
             },
             {
                 name: 'Samuele',
-                avatar: '_3',
+                avatar: 'avatar_3',
                 visible: true,
                 messages: [{
                         date: '28/03/2020 10:10:40',
@@ -70,7 +70,7 @@ var app = new Vue({
             },
             {
                 name: 'Alessandro B.',
-                avatar: '_4',
+                avatar: 'avatar_4',
                 visible: true,
                 messages: [{
                         date: '10/01/2020 15:30:55',
@@ -86,7 +86,7 @@ var app = new Vue({
             },
             {
                 name: 'Alessandro L.',
-                avatar: '_5',
+                avatar: 'avatar_5',
                 visible: true,
                 messages: [{
                         date: '10/01/2020 15:30:55',

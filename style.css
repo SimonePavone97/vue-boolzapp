@@ -10,10 +10,6 @@ Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visua
     box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
-}
-
 .sfondo{
     height: 100vh;
     background-image: 
@@ -39,5 +35,5 @@ p{
 
 .sfondo-chats{
     background-image: url(./asset/img-boolzap/mine.jpg);
-    height: 100vh;
+ 
 }
