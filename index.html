@@ -25,9 +25,9 @@
                         <!--Prima sezione con profilo utente-->
                         <div class="d-flex justify-content-between align-items-center border border-1 border-dark p-3">
                             <div class="d-flex align-items-center">
-                                <img src="./asset/img-boolzap/avatar_io.jpg" alt="profilo"
+                                <img :src="`./asset/img-boolzap/${profilo.img}.jpg`" :alt="`profilo di ${profilo.name}`"
                                     class="rounded-circle img-profile me-3">
-                                <span>Nome e Cognome</span>
+                                <span>{{profilo.name}}</span>
                             </div>
                             <div>
                                 <i class="fa-solid fa-circle-notch"></i>
@@ -58,30 +58,18 @@
                         <!--contenitore chats-->
                         <div class="border border-1 border-dark p-3">
                             <ul class="list-group list-group-flush">
-                                <li class="d-flex justify-content-between align-items-center list-group-item"  v-for="contact in contacts">
+                                <li class="d-flex justify-content-between align-items-center list-group-item" v-for="contact in contacts"  >
                                     <div class="d-flex align-items-center">
-                                        <img src="" alt="" class="rounded-circle img-profile me-3">
+                                        <img :src="`./asset/img-boolzap/${ contact.avatar }.jpg`" :alt="`profilo di ${contacts.name}`" class="rounded-circle img-profile me-3">
                                         <div>
-                                            <span>{{ 'element.name' }}</span> <br>
-                                            <span>{{ 'element.date' }}</span>
+                                            <span>{{ contact.name }}</span> <br>
+                                            <span>Ultimo messaggio ricevuto</span>
                                         </div>
                                     </div>
                                     <div>
                                         <span>12:00</span>
                                     </div>
                                 </li>
-                                <!--<li class="d-flex justify-content-between align-items-center list-group-item">
-                                    <div class="d-flex align-items-center">
-                                        <img src="./asset/img-boolzap/avatar_1.jpg" alt="" class="rounded-circle img-profile me-3">
-                                        <div>
-                                            <span>Nome e Cognome</span> <br>
-                                            <span>Ultimo messaggio inviato</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span>12:00</span>
-                                    </div>
-                                </li>-->
                             </ul>
                         </div>
                     </div>
