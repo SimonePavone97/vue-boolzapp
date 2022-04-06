@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: "#root",
+    el: '#root',
     data: {
         profilo: {
             name: 'Sofia',
@@ -10,98 +10,117 @@ var app = new Vue({
                 avatar: 'avatar_1',
                 visible: true,
                 messages: [{
-                        date: '10/01/2020 15:30:55',
+                        date: '',
                         message: 'Hai portato a spasso il cane?',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '',
                         message: 'Ricordati di stendere i panni',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 16:15:22',
+                        date: '',
                         message: 'Tutto fatto!',
                         status: 'received'
                     }
                 ],
             },
             {
-                name: 'Fabio',
-                avatar: 'avatar_2',
+                name: 'Claudia',
+                avatar: 'avatar_6',
                 visible: true,
                 messages: [{
-                        date: '20/03/2020 16:30:00',
-                        message: 'Ciao come stai?',
+                        date: '',
+                        message: 'Ciao Claudia, hai novità?',
                         status: 'sent'
                     },
                     {
-                        date: '20/03/2020 16:30:55',
-                        message: 'Bene grazie! Stasera ci vediamo?',
+                        date: '',
+                        message: 'Non ancora',
                         status: 'received'
                     },
                     {
-                        date: '20/03/2020 16:35:00',
-                        message: 'Mi piacerebbe ma devo andare a fare la spesa.',
+                        date: '',
+                        message: 'Nessuna nuova, buona nuova',
                         status: 'sent'
                     }
                 ],
             },
             {
-                name: 'Samuele',
-                avatar: 'avatar_3',
+                name: 'Federico',
+                avatar: 'avatar_7',
                 visible: true,
                 messages: [{
-                        date: '28/03/2020 10:10:40',
-                        message: 'La Marianna va in campagna',
-                        status: 'received'
-                    },
-                    {
-                        date: '28/03/2020 10:20:10',
-                        message: 'Sicuro di non aver sbagliato chat?',
+                        date: '',
+                        message: 'Fai gli auguri a Martina che è il suo compleanno!',
                         status: 'sent'
                     },
                     {
-                        date: '28/03/2020 16:15:22',
-                        message: 'Ah scusa!',
+                        date: '',
+                        message: 'Grazie per avermelo ricordato, le scrivo subito!',
                         status: 'received'
                     }
                 ],
             },
             {
-                name: 'Alessandro B.',
-                avatar: 'avatar_4',
+                name: 'Davide',
+                avatar: 'avatar_8',
                 visible: true,
                 messages: [{
-                        date: '10/01/2020 15:30:55',
-                        message: 'Lo sai che ha aperto una nuova pizzeria?',
+                        date: '',
+                        message: 'Ciao, andiamo a mangiare la pizza stasera?',
+                        status: 'received'
+                    },
+                    {
+                        date: '',
+                        message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
-                        message: 'Si, ma preferirei andare al cinema',
+                        date: '',
+                        message: 'OK!!',
                         status: 'received'
                     }
                 ],
-            },
-            {
-                name: 'Alessandro L.',
-                avatar: 'avatar_5',
-                visible: true,
-                messages: [{
-                        date: '10/01/2020 15:30:55',
-                        message: 'Ricordati di chiamare la nonna',
-                        status: 'sent'
-                    },
-                    {
-                        date: '10/01/2020 15:50:00',
-                        message: 'Va bene, stasera la sento',
-                        status: 'received'
-                    }
-                ],
-            },
+            }
+        ],
+        indexChanged: 0,
+        newMessageText: ''
+    },
 
-        ]
+    methods:{
+        changeContactsIndex: function (index) {
+            console.log(index)
+            this.indexChanged = index;
+            console.log(`l'indice è diventato: ${this.indexChanged}`);
+        },
+
+        newMessage: function(){
+            let currentDate = dayjs().format('DD/MM/YYYY');
+            let hour = dayjs().get('hour');
+            let minute =  dayjs().get('minute');
+
+            let newMessageObject = {
+                date: `${currentDate} ${hour} ${minute}`,
+                message: this.newMessageText,
+                status: 'sent'
+            } 
+            let newMessageObjectReceived = {
+                date: `${currentDate} ${ hour}:${minute}`,
+                message: 'ok',
+                staus: 'received'
+            }
+
+            this.contacts[this.indexChanged].messages.push(newMessageObject);
+
+            setTimeout(
+                () => {
+                    this.contacts[this.indexChanged].messages.push(newMessageObjectReceived)
+                }, 3000);
+            
+        }
     }
+
 
 })

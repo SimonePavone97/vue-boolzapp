@@ -40,7 +40,7 @@
                             <div class="bg-white rounded-circle p-2 me-3">
                                 <i class="fa-solid fa-bell-slash text-info"></i>
                             </div>
-                            <div>
+                            <div class="">
                                 <p>Ricevi notifiche di nuovi messaggi</p>
                                 <p>Ottieni notifiche descktop</p>
                             </div>
@@ -58,11 +58,15 @@
                         <!--contenitore chats-->
                         <div class="border border-1 border-dark p-3">
                             <ul class="list-group list-group-flush">
-                                <li class="d-flex justify-content-between align-items-center list-group-item" v-for="contact in contacts"  >
+                                <li class="d-flex justify-content-between align-items-center list-group-item" 
+                                v-for="(element, index) in contacts"
+                                role="button"
+                                @click="changeContactsIndex(index)"
+                                >
                                     <div class="d-flex align-items-center">
-                                        <img :src="`./asset/img-boolzap/${ contact.avatar }.jpg`" :alt="`profilo di ${contacts.name}`" class="rounded-circle img-profile me-3">
+                                        <img :src="`./asset/img-boolzap/${ element.avatar }.jpg`" :alt="`profilo di ${element.name}`" class="rounded-circle img-profile me-3">
                                         <div>
-                                            <span>{{ contact.name }}</span> <br>
+                                            <span>{{ element.name }}</span> <br>
                                             <span>Ultimo messaggio ricevuto</span>
                                         </div>
                                     </div>
@@ -77,10 +81,10 @@
                     <div class="col-8 d-flex flex-column justify-content-between">
                         <div class="d-flex justify-content-between align-items-center border border-1 border-dark p-3">
                             <div class="d-flex align-items-center">
-                                <img src="./asset/img-boolzap/avatar_1.jpg" alt="profilo"
+                                <img :src="`./asset/img-boolzap/${contacts[indexChanged].avatar}.jpg`" alt="profilo"
                                     class="rounded-circle img-profile me-3">
                                 <div class="d-flex flex-column">
-                                    <span>Nome e cognome</span>
+                                    <span>{{contacts[indexChanged].name}}</span>
                                     <span>Ultimo messaggio inviato</span>
                                 </div>
                             </div>
@@ -92,26 +96,26 @@
                         </div>
                         <div class="sfondo-chats h-100 p-3">
                             <ul class="d-flex align-items-end list-group list-group-flush">
-                                <li class="list-group-item rounded-2 my-2 sfondo-msg">
-                                    Hai portato fuori il cane?
-                                </li>
-                                <li class="list-group-item rounded-2 m-y.2 sfondo-msg">
-                                    Ricordati di stendere i panni
-                                </li>
-                            </ul>
-
-                            <ul class="d-flex align-items-start list-group list-group-flush">
-                                <li class="list-group-item rounded-2 align-items-end">
-                                    Ho fatto tutto!
+                                <li class="list-group-item rounded-2 my-2 sfondo-msg" 
+                                v-for="(element, index) in contacts[indexChanged].messages"
+                                :class="(element.status == 'sent') ? 'align-self-end sent' : 'align-self-start received'"
+                                >
+                                    {{ element.message }}
+                                    <p class="text-end fs-6">
+                                        {{element.date}}
+                                    </p>
                                 </li>
                             </ul>
                         </div>
+<!--Footer colonna destra-->
                         <div class="input-group input-group-sm">
                                 <span class="input-group-text">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </span>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm">
+                                v-model="newMessageText"
+                                @keyUp.enter="newMessage"
+                                >
                                     <div class="p-3">
                                         <i class="fa-solid fa-microphone"></i>
                                     </div>
@@ -132,6 +136,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="./main.js"></script>
 </body>
 
