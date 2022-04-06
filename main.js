@@ -119,7 +119,19 @@ var app = new Vue({
                     this.contacts[this.indexChanged].messages.push(newMessageObjectReceived)
                 }, 3000);
             
-        }
+        },
+        filterContacts: function(){
+            this.contacts.forEach(element => {
+                if(element.name.toLowerCase().includes(this.filterText.toLowerCase())){
+                    element.visible = true;
+                } else {
+                    element.visible = false;
+                }
+
+            });
+        },
+
+        
     }
 
 
